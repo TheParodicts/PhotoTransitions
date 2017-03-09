@@ -164,8 +164,9 @@ public class RightPanel extends JPanel {
 			
 				int pixelColor= leftImage.getRGB(coordX[i]%width,coordX[i]/width);//The % and / decode the linear representation.
 				img.setRGB(coordX[i]%width,coordX[i]/width, pixelColor);	
+		repaint();
 		}
-			repaint();
+			
 			try { Thread.sleep(10); } catch (InterruptedException e) { };
 	}
 		
