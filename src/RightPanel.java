@@ -1,5 +1,7 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -139,15 +141,33 @@ public class RightPanel extends JPanel {
 	public void transitionRandom(Graphics g, BufferedImage leftImage){
 		int width = leftImage.getWidth();
 		int height = leftImage.getHeight();
+		int totalPixels = width*height;
 		Random random = new Random();
-		for (int j=0; j<height; j++){
-			for (int i=0; i<width; i++){
-				int pixelColor= leftImage.getRGB(i,j);
-				img.setRGB(i, j, pixelColor);
-			}
-			repaint();
-			try { Thread.sleep(10); } catch (InterruptedException e) { };
+		int[] coordX =new int[totalPixels];
+		
+		
+		
+		for (int i=0; i<totalPixels-1; i++){
+				coordX[i]=i;
 		}
 		
+		
+	    for (int i = totalPixels - 1; i > 0; i--)
+	    {
+	      int index = random.nextInt(i + 1);
+	      // Simple swap
+	      int a = coordX[index];
+	      coordX[index] = coordX[i];
+	      coordX[i] = a;
+	    }
+		
+		for (int i=0; i<totalPixels-1; i++){
+			
+				int pixelColor= leftImage.getRGB(coordX[i]%width,coordX[i]/width);
+				img.setRGB(coordX[i]%width,coordX[i]/width, pixelColor);	
+		}
+			repaint();
+			try { Thread.sleep(10); } catch (InterruptedException e) { };
 	}
+		
 }
