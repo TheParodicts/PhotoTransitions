@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -143,16 +142,16 @@ public class RightPanel extends JPanel {
 		int height = leftImage.getHeight();
 		int totalPixels = width*height;
 		Random random = new Random();
-		int[] coordX =new int[totalPixels];
+		int[] coordX =new int[totalPixels];//Creates new array to represent every pixel in a continuous code.
 		
 		
 		
 		for (int i=0; i<totalPixels-1; i++){
-				coordX[i]=i;
+				coordX[i]=i;//fills the array.
 		}
 		
 		
-	    for (int i = totalPixels - 1; i > 0; i--)
+	    for (int i = totalPixels - 1; i > 0; i--)//shuffles the array contents to randomize pixel order.
 	    {
 	      int index = random.nextInt(i + 1);
 	      // Simple swap
@@ -161,9 +160,9 @@ public class RightPanel extends JPanel {
 	      coordX[i] = a;
 	    }
 		
-		for (int i=0; i<totalPixels-1; i++){
+		for (int i=0; i<totalPixels-1; i++){// Goes through array in order, but since it's randomized, paints random pixels.
 			
-				int pixelColor= leftImage.getRGB(coordX[i]%width,coordX[i]/width);
+				int pixelColor= leftImage.getRGB(coordX[i]%width,coordX[i]/width);//The % and / decode the linear representation.
 				img.setRGB(coordX[i]%width,coordX[i]/width, pixelColor);	
 		}
 			repaint();
