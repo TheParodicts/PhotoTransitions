@@ -167,7 +167,7 @@ public class RightPanel extends JPanel {
 		repaint();
 		}
 			
-			try { Thread.sleep(10); } catch (InterruptedException e) { };
+			try { Thread.sleep(100); } catch (InterruptedException e) { };
 	}
 		
 }
